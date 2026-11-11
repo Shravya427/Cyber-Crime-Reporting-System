@@ -63,25 +63,25 @@ In the modern digital era, the exponential surge in cyber financial fraud (UPI s
 ## 🏛️ System Architecture
 
 ```mermaid
-graph TD
-    User([Citizen / Officer / Administrator]) -->|HTTPS / REST API| Frontend[React 19 + Vite SPA]
-    Frontend -->|JWT Authentication & Bearer Tokens| Backend[Python Flask REST API]
+flowchart TD
+    User(["Citizen / Officer / Administrator"]) -->|"HTTPS / REST API"| Frontend["React 19 + Vite SPA"]
+    Frontend -->|"JWT Authentication & Bearer Tokens"| Backend["Python Flask REST API"]
     
-    Backend -->|PyMongo Driver| DB[(MongoDB 8.x / Atlas Database)]
+    Backend -->|"PyMongo Driver"| DB[("MongoDB 8.x / Atlas Database")]
     
-    subgraph MongoDB Database Tier
-        DB --> Users[users collection]
-        DB --> Officers[officers collection]
-        DB --> Complaints[complaints collection]
-        DB --> Evidence[evidence metadata catalog]
-        DB --> GridFS[fs.files & fs.chunks (Evidence Vault)]
-        DB --> Audit[audit_logs collection]
-        DB --> Notifs[notifications collection]
-        DB --> Categories[crime_categories]
+    subgraph DatabaseTier ["MongoDB Database Tier"]
+        DB --> Users["users collection"]
+        DB --> Officers["officers collection"]
+        DB --> Complaints["complaints collection"]
+        DB --> Evidence["evidence metadata catalog"]
+        DB --> GridFS["fs.files & fs.chunks (Evidence Vault)"]
+        DB --> Audit["audit_logs collection"]
+        DB --> Notifs["notifications collection"]
+        DB --> Categories["crime_categories"]
     end
     
-    Backend -->|Forensic SHA-256 Checksum| GridFS
-    Backend -->|Aggregation Pipelines: $facet, $lookup, $group| Analytics[Real-Time Analytics]
+    Backend -->|"Forensic SHA-256 Checksum"| GridFS
+    Backend -->|"Aggregation Pipelines"| Analytics["Real-Time Analytics"]
 ```
 
 ---
